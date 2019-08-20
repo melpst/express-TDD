@@ -4,6 +4,6 @@ const Schema = mongoose.Schema
 
 const tempSchema = new Schema({
 	text: String
-}, { minimize: false })
+}, { strict: false})
 
 module.exports = tempSchema

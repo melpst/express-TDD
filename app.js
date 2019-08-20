@@ -5,8 +5,8 @@ import {temp} from './models'
 
 const app = express()
 
-const client = mongoose.createConnection(process.env.MONGODB_URL,  { useNewUrlParser: true })
-const tempSchema = client.model('temp', temp)
+const testDB = mongoose.createConnection(process.env.MONGODB_URL,  { useNewUrlParser: true })
+const tempSchema = testDB.model('temp', temp)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -17,8 +17,8 @@ app.get('/', (req, res) => {
       res.status(500).send(err.message)
     }
     else{
-      console.log(JSON.stringify(docs))
-      res.status(200).send(JSON.stringify(docs))
+      console.log(docs)
+      res.status(200).send(docs)
     }
   })
 })
@@ -26,13 +26,14 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   let newTemp = new tempSchema()
   newTemp.text = "new temp"
+  newTemp.set('username', "hhoooooooooooooooooo")
   newTemp.save((err, docs) => {
     if(err){
       res.status(500).send(err.message)
     }
     else{
-      console.log(JSON.stringify(docs))
-      res.status(200).send(JSON.stringify(docs))
+      console.log(docs)
+      res.status(200).send(docs)
     }
   })
 })
