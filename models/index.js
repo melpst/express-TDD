@@ -1,6 +1,3 @@
-const temp = require('./temp')
+import {userSchema} from './user'
 
-
-module.exports = {
-  temp
-}
+export {userSchema}
