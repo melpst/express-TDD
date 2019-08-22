@@ -7,8 +7,8 @@ const router = Router()
 const dal = new DALController()
 const userColl = mongoose.model('user', userModel)
 
-router.get('/', (req, res) => {
-  dal.findAll({'_id': '5d5d62c3ab56e83654c12883'}, {'_id': 'desc'}, 1, userColl)
+function findAll(filter, sort, limit, coll, res){
+  dal.findAll(filter, sort, limit, coll)
   .then((docs) => {
     console.log(docs)
     res.status(200).send(docs)
@@ -17,20 +17,27 @@ router.get('/', (req, res) => {
     console.log(err)
     res.status(500).send(err.message)
   })
+}
+
+router.get('/', (req, res) => {
+  findAll({}, {'_id': 'desc'}, null, userColl, res)
+})
+
+router.get('/:id', (req, res) => {
+  findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
 })
 
 router.post('/', (req, res) => {
-  const newuser = new userColl()
-  newuser.text = req.body.text
-  newuser.username = req.body.username
-  newuser.save((err, docs) => {
-    if(err){
-      res.status(500).send(err.message)
-    }
-    else{
-      console.log(docs)
-      res.status(200).send(docs)
-    }
+  const newuser = new userColl(req.body)
+
+  dal.save(newuser)
+  .then((docs) => {
+    console.log(docs)
+    res.status(200).send(docs)
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).send(err.message)
   })
 })
 
