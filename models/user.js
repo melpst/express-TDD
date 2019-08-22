@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-let userSchema = new Schema({
+const userSchema = new Schema({
 	username: String,
 	text: String
 }, { strict: false})
 
-userSchema = mongoose.model('user',userSchema)
+const userModel = mongoose.model('user',userSchema)
 
-export {userSchema}
+export {userModel}
