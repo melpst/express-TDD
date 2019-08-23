@@ -6,6 +6,10 @@ class DALController{
     async save(newDoc){
         return newDoc.save()
     }
+
+    async findOneAndUpdate(filter, update, options, coll){
+        return coll.findOneAndUpdate(filter,update,options)
+    }
 }
 
 export { DALController }

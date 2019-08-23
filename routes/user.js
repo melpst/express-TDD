@@ -27,10 +27,22 @@ router.get('/:id', (req, res) => {
   findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
 })
 
-router.post('/', (req, res) => {
-  const newuser = new userColl(req.body)
+router.put('/:id', (req, res) => {
+  dal.findOneAndUpdate({'_id': req.params.id}, {'name': 'test deprecate'}, {'new': true}, userColl)
+  .then((docs) => {
+    console.log(docs)
+    res.status(200).send(docs)
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).send(err.message)
+  })
+})
 
-  dal.save(newuser)
+router.post('/', (req, res) => {
+  const newUser = new userColl(req.body)
+
+  dal.save(newUser)
   .then((docs) => {
     console.log(docs)
     res.status(200).send(docs)

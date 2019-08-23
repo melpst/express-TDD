@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import router from './routes'
 
-mongoose.connect(process.env.MONGODB_URL+'&authSource=admin',  { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URL+'&authSource=admin',  { useNewUrlParser: true , useFindAndModify: false})
 .then(() => console.log('connected'))
 .catch((err) => console.log(err))
 
