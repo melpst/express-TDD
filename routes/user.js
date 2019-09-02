@@ -40,6 +40,7 @@ router.put('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log(req.body)
   const newUser = new userColl(req.body)
 
   dal.save(newUser)
