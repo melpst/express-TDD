@@ -10,7 +10,7 @@ const userColl = mongoose.model('user', userModel)
 function findAll(filter, sort, limit, coll, res){
   dal.findAll(filter, sort, limit, coll)
   .then((docs) => {
-    console.log(docs)
+    // console.log(docs)
     res.status(200).send(docs)
   })
   .catch((err)=>{
@@ -23,9 +23,21 @@ router.get('/', (req, res) => {
   findAll({}, {'_id': 'desc'}, null, userColl, res)
 })
 
+router.get('/test', (req,res) => res.render('index'))
+
 router.get('/:id', (req, res) => {
-  findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
+  // findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
+  dal.findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl)
+  .then((docs) => {
+    console.log(docs)
+    res.render('all', {users: docs})
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).send(err.message)
+  })
 })
+
 
 router.put('/:id', (req, res) => {
   dal.findOneAndUpdate({'_id': req.params.id}, {'name': 'test deprecate'}, {'new': true}, userColl)
@@ -53,5 +65,25 @@ router.post('/', (req, res) => {
     res.status(500).send(err.message)
   })
 })
+
+router.post('/getUserById', (req, res) => {
+  console.log(req.body)
+  dal.findAll({'_id': req.body.id}, {'_id': 'desc'}, null, userColl)
+  .then((docs) => {
+    console.log(docs)
+    let users = '<table><thead><td>id</td><td>name</td><td>text</td></thead><tbody>'
+    docs.forEach(doc => {
+      users += '<tr><td>'+doc._id+'</td><td>'+doc.username+'</td><td>'+doc.text+'</td></tr>'
+    });
+    users += '</tbody></table>'
+    res.status(200).send(users)
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).send(err.message)
+  })
+})
+
+
 
 module.exports = router

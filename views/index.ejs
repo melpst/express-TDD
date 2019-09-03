@@ -1,67 +1,33 @@
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/index.js"></script>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/index.css"/>
 <script>
 let users = []
 
 $(document).ready(async ()=>{
     const userInfo = {
-        username: 'test with alert',
-        text: 'by ajax'
+        username: 'test',
+        text: 'with alert by ajax'
     }
-    // const res = await fetch('/user', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         // 'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     body: JSON.stringify(userInfo)
-    // })
-    // const data = await res.json()
-    // document.getElementById('title').textContent = JSON.stringify(data)
-    
-    // const res = await fetch('/user')
-    // const data = await res.json()
-    // return res.redirect('/', {users: data})
-
-    // $.get('/user', (data)=>{
-    //     users = data
-    // })
-    // .done((res) => {
-    //     res.render('index', users)
-    // })
-
-    $.ajax({
-        type: 'post',
-        url: '/user',
-        dataType: 'json',
-        data: userInfo,
-        success: function (docs) {
-            let data = ''
-            if(docs.length>0){
-                for(let i = 0; i<docs.length; i++){
-                    alert(JSON.stringify(docs[i]))
-                    data = '<tr><td>'+docs[i]._id+'</td>'+'<td>'+docs[i].username+'</td>'+'<td>'+docs[i].text+'</td></tr>'
-                    $('#users').append(data)
-                }
-            }
-            else{
-                alert(JSON.stringify(docs))
-                data = '<tr><td>'+docs._id+'</td>'+'<td>'+docs.username+'</td>'+'<td>'+docs.text+'</td></tr>'
-                $('#users').append(data)
-            }
+    liff.init(
+        data => {
+            // Now you can call LIFF API
+            // const userId = data.context.userId;
+            
+            $('#data').load('/user/getUserById', {id: "5d6cbcbef3c7b4627c46536d"})
+            console.log(userInfo)
         },
-        error: function(err) {
-            alert(err)
+        err => {
+            // LIFF initialization failed
+            console.log('failed')
         }
-    })
+    );
+
 })
 </script>
 
-<table>
-    <thead>
-        <td>id</td>
-        <td>name</td>
-        <td>text</td>
-    </thead>
-    <tr id="users"></tr>
-</table>
+<html>
+<p id="data"></p>
+</html>
