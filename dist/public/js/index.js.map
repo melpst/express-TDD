@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/public/js/index.js"],"names":["alert"],"mappings":";;AAAAA,KAAK,CAAC,aAAD,CAAL","sourcesContent":["alert(\"hello world\")"],"file":"index.js"}

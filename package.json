@@ -4,8 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d dist --source-maps",
+    "serve": "NODE_ENV=production node dist/app.js",
+    "start": "nodemon --exec babel-node src/app.js",
+    "dev": "set DEBUG=server:debug&& set NODE_ENV=development&& nodemon src/app.js --exec babel-node ",
+    "test": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require babel-core/register --reporter spec --exit tests/ --exec babel-node"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,11 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "config": "^3.2.2",
+    "debug": "^4.1.1",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",

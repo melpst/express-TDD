@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/index.js"></script>
+<script src="/js/index.js"></script>
 <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+<link rel="stylesheet" type="text/css" href="/css/index.css"/>
 <script>
 let users = []
 
@@ -11,19 +11,19 @@ $(document).ready(async ()=>{
         username: 'test',
         text: 'with alert by ajax'
     }
-    liff.init(
-        data => {
-            // Now you can call LIFF API
-            // const userId = data.context.userId;
+    // liff.init(
+    //     data => {
+    //         // Now you can call LIFF API
+    //         // const userId = data.context.userId;
             
             $('#data').load('/user/getUserById', {id: "5d6cbcbef3c7b4627c46536d"})
-            console.log(userInfo)
-        },
-        err => {
-            // LIFF initialization failed
-            console.log('failed')
-        }
-    );
+        //     console.log(userInfo)
+        // },
+        // err => {
+        //     // LIFF initialization failed
+        //     console.log('failed')
+        // }
+    // );
 
 })
 </script>

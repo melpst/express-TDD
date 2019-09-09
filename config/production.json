@@ -1,0 +1,5 @@
+{
+    "name": "Server Production",
+    "database": "test?retryWrites=true&w=majority&authSource=admin",
+    "port": 3000
+}
