@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/', router)
 
 
-app.listen(4000, () => {
+module.exports = app.listen(config.get('port'), () => {
     debug(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
     console.log(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
 })

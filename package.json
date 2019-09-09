@@ -8,7 +8,7 @@
     "serve": "NODE_ENV=production node dist/app.js",
     "start": "nodemon --exec babel-node src/app.js",
     "dev": "set DEBUG=server:debug&& set NODE_ENV=development&& nodemon src/app.js --exec babel-node ",
-    "test": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require babel-core/register --reporter spec --exit tests/ --exec babel-node"
+    "test": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/ --exec babel-node"
   },
   "author": "",
   "license": "ISC",
@@ -21,15 +21,17 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.6.0",
     "chai": "^4.2.0",
     "config": "^3.2.2",
     "debug": "^4.1.1",
     "mocha": "^6.2.0",
-    "supertest": "^4.0.2",
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/node": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
