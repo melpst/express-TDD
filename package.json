@@ -8,7 +8,8 @@
     "serve": "NODE_ENV=production node dist/app.js",
     "start": "nodemon --exec babel-node src/app.js",
     "dev": "set DEBUG=server:debug&& set NODE_ENV=development&& nodemon src/app.js --exec babel-node ",
-    "test": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/ --exec babel-node"
+    "test:mocha": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/mocha --exec babel-node",
+    "test:jasmine": "set DEBUG=server:debug&& set NODE_ENV=test&& babel-node spec/run.js"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "chai": "^4.2.0",
     "config": "^3.2.2",
     "debug": "^4.1.1",
+    "jasmine": "^3.4.0",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"

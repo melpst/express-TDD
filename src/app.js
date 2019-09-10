@@ -1,4 +1,4 @@
-const debug =require('debug')('server:debug');
+const debug = require('debug')('server:debug');
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
@@ -30,5 +30,5 @@ const server = app.listen(config.get('port'), () => {
     console.log(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
 })
 
-module.exports.server = server
+module.exports = server
 module.exports.db = client
