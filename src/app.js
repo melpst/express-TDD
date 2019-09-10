@@ -1,4 +1,5 @@
 const debug = require('debug')('server:debug');
+import { logger } from './logger';
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
@@ -25,9 +26,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/', router)
 
 const server = app.listen(config.get('port'), () => {
-    debug(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
+    // debug(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
+    logger.info(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
     // console.log(client.client.s.url)
-    console.log(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
+    // console.log(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`);
 })
 
 module.exports = server
