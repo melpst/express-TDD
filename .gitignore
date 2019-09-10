@@ -39,3 +39,5 @@ jspm_packages
 # lock files
 package-lock.json
 yarn.lock
+
+config/azure.json
