@@ -1,5 +1,6 @@
 {
     "name": "Server Development",
-    "database": "test?retryWrites=true&w=majority&authSource=admin",
-    "port": 3000
+    "database": "test?retryWrites=true&w=majority",
+    "port": 3000,
+    "logger": ""
 }
