@@ -20,8 +20,8 @@ var Log_config = log4js.configure({
     }
   },
   categories: {
-    default: { "appenders": ["work","console"] , "level": "INFO" },
-    test: { "appenders": ["test"] , "level": "DEBUG" }
+    default: { "appenders": ["work","console"] , "level": "TRACE" },
+    test: { "appenders": ["test"] , "level": "TRACE" }
   }
 });
 

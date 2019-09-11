@@ -10,6 +10,10 @@ class DALController{
     async findOneAndUpdate(filter, update, options, coll){
         return coll.findOneAndUpdate(filter,update,options)
     }
+
+    async deleteAll(coll){
+        return coll.deleteMany({})
+    }
 }
 
 export { DALController }

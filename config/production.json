@@ -1,6 +1,9 @@
 {
     "name": "Server Production",
-    "database": "test?retryWrites=true&w=majority&authSource=admin",
+    "database": {
+        "url": "test?retryWrites=true&w=majority&authSource=admin",
+        "dialect": "mongo"
+    },
     "port": 3000,
     "logger": ""
 }

@@ -1,6 +1,9 @@
 {
     "name": "Server Test",
-    "database": "test?retryWrites=true&w=majority&authSource=admin",
+    "database": {
+        "url": "mock url",
+        "dialect": "mock"
+    },
     "port": 3100,
     "logger": "test"
 }

@@ -5,6 +5,6 @@ const router = Router()
 
 router.use('/user', user)
 
-router.get('/', (req,res) => res.render('index'))
+router.get('/', (req,res) => res.send({'text': 'hello world'}))
 
 module.exports = router
