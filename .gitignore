@@ -40,4 +40,6 @@ jspm_packages
 package-lock.json
 yarn.lock
 
+#others
 config/azure.json
+dist

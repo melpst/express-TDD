@@ -58,9 +58,10 @@ function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log('dal', newDoc);
                 return _context2.abrupt("return", newDoc.save());
 
-              case 1:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -99,6 +100,32 @@ function () {
       }
 
       return findOneAndUpdate;
+    }()
+  }, {
+    key: "deleteAll",
+    value: function () {
+      var _deleteAll = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4(coll) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", coll.deleteMany({}));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function deleteAll(_x10) {
+        return _deleteAll.apply(this, arguments);
+      }
+
+      return deleteAll;
     }()
   }]);
 
