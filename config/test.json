@@ -1,9 +1,0 @@
-{
-    "name": "Server Test",
-    "database": {
-        "url": "mock url",
-        "dialect": "mock"
-    },
-    "port": 3100,
-    "logger": "test"
-}

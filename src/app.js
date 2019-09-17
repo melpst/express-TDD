@@ -1,10 +1,10 @@
 import { logger } from './logger'
-import config from 'config'
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './routes'
 import path from 'path'
 import database from './database'
+import {finalConfig} from '../config'
 
 const app = express()
 
@@ -16,8 +16,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use('/', router)
 
-const server = app.listen(config.get('port'), () => {
-    logger.info(`server is running on port ${config.get('port')} and in ${config.get('name')} mode`)
+const server = app.listen(finalConfig.port, () => {
+    logger.info(`server is running on port ${finalConfig.port} and in ${finalConfig.name} mode`)
 })
 
 module.exports = server

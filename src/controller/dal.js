@@ -4,6 +4,7 @@ class DALController{
     }
 
     async save(newDoc){
+        console.log('dal', newDoc)
         return newDoc.save()
     }
 

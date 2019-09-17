@@ -1,5 +1,5 @@
-const log4js = require('log4js')
-import config from 'config'
+import log4js from 'log4js'
+import {finalConfig} from '../config'
 const current_datetime = new Date();
 var Log_config = log4js.configure({
   appenders: {
@@ -20,12 +20,13 @@ var Log_config = log4js.configure({
     }
   },
   categories: {
-    default: { "appenders": ["work","console"] , "level": "TRACE" },
+    prod: { "appenders": ["work","console"] , "level": "INFO" },
+    default: { "appenders": ["work","console"] , "level": "DEBUG" },
     test: { "appenders": ["test"] , "level": "TRACE" }
   }
 });
 
-const logger = log4js.getLogger(config.get('logger'));
+const logger = log4js.getLogger(finalConfig.logger);
 
 export {
   logger,Log_config

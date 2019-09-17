@@ -1,0 +1,29 @@
+{
+    "production":{
+        "name": "Server Production",
+        "database": {
+            "url": "test?retryWrites=true&w=majority&authSource=admin",
+            "dialect": "mongo"
+        },
+        "port": 3000,
+        "logger": "prod"
+    },
+    "development":{
+        "name": "Server Development",
+        "database": {
+            "url": "test?retryWrites=true&w=majority&authSource=admin",
+            "dialect": "mongo"
+        },
+        "port": 4000,
+        "logger": ""
+    },
+    "test":{
+        "name": "Server Test",
+        "database": {
+            "url": "mock url",
+            "dialect": "mock"
+        },
+        "port": 3100,
+        "logger": "test"
+    }
+}

@@ -1,16 +1,16 @@
 import mongoose from 'mongoose'
-import config from 'config'
+import {finalConfig} from '../config'
 import { logger } from './logger'
 
-if(config.get('database').get('dialect') === 'mongo'){
-    mongoose.connect(process.env.MONGODB_URL+config.get('database').get('url'),  { useNewUrlParser: true , useFindAndModify: false})
+if(finalConfig.database.dialect === 'mongo'){
+    mongoose.connect(finalConfig.database.url,  { useNewUrlParser: true , useFindAndModify: false})
     .then(() => {
         logger.info('connected to db')
     })
     .catch((err) => logger.error(err))
     module.exports = mongoose.connection
 }
-else if(config.get('database').get('dialect') === 'mock'){
+else if(finalConfig.database.dialect === 'mock'){
     const db = {
         url: "mock url"
     }

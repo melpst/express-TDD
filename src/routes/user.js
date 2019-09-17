@@ -3,9 +3,11 @@ import mongoose from 'mongoose'
 import userModel from '../models'
 import {DALController} from '../controller'
 import { logger } from '../logger';
+import { ElasticService } from '../controller/elastic'
 
 const router = Router()
 const dal = new DALController()
+const elastic = new ElasticService()
 const userColl = mongoose.model('user', userModel)
 
 function findAll(filter, sort, limit, coll, res){
@@ -21,7 +23,7 @@ function findAll(filter, sort, limit, coll, res){
 }
 
 router.get('/', (req, res) => {
-  logger.debug(`GET /user`)
+  logger.info(`GET /user`)
   findAll({}, {'_id': 'desc'}, null, userColl, res)
 })
 
@@ -31,7 +33,7 @@ router.get('/test', (req,res) => {
 
 router.get('/:id', (req, res) => {
   // findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
-  logger.debug(`GET /user/${req.params.id}`)
+  logger.info(`GET /user/${req.params.id}`)
   dal.findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl)
   .then((docs) => {
     logger.debug(docs)
@@ -44,7 +46,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  logger.debug(`PUT /user/${req.params.id}`)
+  logger.info(`PUT /user/${req.params.id}`)
   dal.findOneAndUpdate({'_id': req.params.id}, {'name': 'test deprecate'}, {'new': true}, userColl)
   .then((docs) => {
     logger.debug(docs)
@@ -57,14 +59,15 @@ router.put('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  logger.debug(`POST /user`)
-  logger.debug(`req : ${req.body}`)
+  logger.info(`POST /user`)
+  logger.info(`req : ${JSON.stringify(req.body)}`)
   const newUser = new userColl(req.body)
 
   dal.save(newUser)
   .then((docs) => {
     logger.debug(docs)
     res.status(200).send(docs)
+    elastic.save(req.body)
   })
   .catch((err)=>{
     logger.error(err)
@@ -73,8 +76,8 @@ router.post('/', (req, res) => {
 })
 
 router.post('/getUserById', (req, res) => {
-  logger.debug(`POST /getUserByID`)
-  logger.debug(`req : ${req.body.id}`)
+  logger.info(`POST /getUserByID`)
+  logger.info(`req : ${req.body.id}`)
   dal.findAll({'_id': req.body.id}, {'_id': 'desc'}, null, userColl)
   .then((docs) => {
     logger.debug(docs)
