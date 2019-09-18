@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "babel src -d dist --source-maps",
+    "build": "rimraf dist&&babel src -d dist --source-maps --copy-files",
     "serve": "set NODE_ENV=production&& node --require @babel/register --require @babel/polyfill dist/app.js",
     "dev": "set DEBUG=server:debug&& set NODE_ENV=development&& nodemon src/app.js --exec babel-node ",
     "test:mocha": "set DEBUG=server:debug&& set NODE_ENV=test&& mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/mocha --exec babel-node",
@@ -20,7 +20,8 @@
     "log4js": "^5.1.0",
     "mongodb": "^3.3.0",
     "mongoose": "^5.6.9",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "rimraf": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
