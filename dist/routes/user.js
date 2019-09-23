@@ -91,7 +91,7 @@ router.post('/', function (req, res) {
     _logger.logger.debug(docs);
 
     res.status(200).send(docs);
-    elastic.save(req.body);
+    elastic.saveUser(req.body);
   })["catch"](function (err) {
     _logger.logger.error(err);
 

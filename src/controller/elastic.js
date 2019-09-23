@@ -17,6 +17,21 @@ const userMapping = {
     }
 };
 
+const activityMapping = {
+    "properties": {
+        "username": {
+            "type": "text"
+        },
+        "location":{
+            "properties": {
+                "coordinates":{
+                    "type": 'geo_point'
+                }
+            }
+        }
+    }
+};
+
 async function insertUser(user){
     let indexStr = `user-${user.username}`;
     logger.info(user)
@@ -68,10 +83,64 @@ async function insertUser(user){
     
 }
 
+async function insertActivity(activity){
+    let indexStr = `activity-${activity.username}`;
+    logger.info('activity', activity)
+    let haveIndex = false;
+    try{
+        const indexExists = await client.indices.exists({index: indexStr})
+        haveIndex = indexExists.body
+        if(!haveIndex){
+            logger.debug(`try create index: [${indexStr}]`);
+            await client.indices.create({
+                index: indexStr,
+                body: {
+                    mappings:activityMapping,
+                    settings: {}
+                }
+            });
+            logger.info(`create index: [${indexStr}] success`);
+            haveIndex = true
+        }
+    }
+    catch(err){
+        if(err.body !== undefined && err.body.error !== undefined){
+            if(err.body.error.type === 'resource_already_exists_exception'){
+                haveIndex = true;
+                logger.debug(`create index: [${indexStr}] already exist`);
+            }
+            else{
+                logger.info("cannot create index: ",err.body);
+            }
+        }
+        else{
+            logger.error("error is undefined"+ err);
+        }
+        
+    }
+    if(haveIndex){
+        try{
+            await client.index({
+                index: indexStr,
+                type: '_doc',
+                refresh: true,
+                body: activity
+            });
+            logger.debug("insert activity: "+JSON.stringify(activity)+" success");
+        }
+        catch(err){
+            console.log("from elastic",JSON.stringify(err))
+            logger.error("cannot insert activity: ",err.body.error.type);
+        }
+    }
+    
+}
+
 class ElasticService {
     constructor() {
         this.indexTable = {};
-        this.save = insertUser;
+        this.saveUser = insertUser;
+        this.saveActivity = insertActivity;
         //this.update = elastic_update;
 
     }

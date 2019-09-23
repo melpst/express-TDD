@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
   .then((docs) => {
     logger.debug(docs)
     res.status(200).send(docs)
-    elastic.save(req.body)
+    elastic.saveUser(req.body)
   })
   .catch((err)=>{
     logger.error(err)

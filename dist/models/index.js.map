@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/models/index.js"],"names":[],"mappings":";;;;;;;;;;;;AAAA","sourcesContent":["import {userModel} from './user'\r\n\r\nexport {userModel}\r\n"],"file":"index.js"}
+{"version":3,"sources":["../../src/models/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;AACA","sourcesContent":["import {userModel} from './user'\r\nimport {activityModel} from './activity'\r\n\r\nexport {userModel, activityModel}\r\n"],"file":"index.js"}
