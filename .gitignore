@@ -42,4 +42,4 @@ yarn.lock
 
 #others
 config/azure.json
-dist
+dist/*.*

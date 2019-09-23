@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+<script>
+let users = []
+
+$(document).ready(async ()=>{
+    const userInfo = {
+        username: 'test',
+        text: 'with alert by ajax'
+    }
+    // liff.init(
+    //     data => {
+    //         // Now you can call LIFF API
+    //         // const userId = data.context.userId;
+            
+    $('#data').load('/user/getUserById', {id: "5d6cbcbef3c7b4627c46536d"})
+        //     console.log(userInfo)
+        // },
+        // err => {
+        //     // LIFF initialization failed
+        //     console.log('failed')
+        // }
+    // );
+
+})
+</script>
+
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+            <p id="data"></p>
+            <table>
+                <tr>
+                    <thead>1</thead>
+                    <thead>2</thead>
+                    <thead>3</thead>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+    </body>
+    
+</html>
