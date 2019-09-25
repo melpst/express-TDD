@@ -1,6 +1,6 @@
-const server = require('../src/app')
+const server = require('../../src/app')
 const request = require('supertest')
-import {finalConfig} from '../config'
+import {finalConfig} from '../../config'
 
 describe("Server", function() {
 	it("isn't null", function() {

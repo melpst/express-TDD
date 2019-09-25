@@ -12,7 +12,7 @@ if(finalConfig.database.dialect === 'mongo'){
 }
 else if(finalConfig.database.dialect === 'mock'){
     const db = {
-        url: "mock url"
+        url: finalConfig.database.url
     }
     module.exports = db
 }

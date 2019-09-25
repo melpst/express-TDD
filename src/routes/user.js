@@ -32,17 +32,8 @@ router.get('/test', (req,res) => {
 })
 
 router.get('/:id', (req, res) => {
-  // findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
   logger.info(`GET /user/${req.params.id}`)
-  dal.findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl)
-  .then((docs) => {
-    logger.debug(docs)
-    res.render('all', {users: docs})
-  })
-  .catch((err)=>{
-    logger.error(err)
-    res.status(500).send(err.message)
-  })
+  findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
 })
 
 router.put('/:id', (req, res) => {
