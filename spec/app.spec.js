@@ -1,5 +1,6 @@
 const server = require('../src/app')
-const config = require('config')
+const request = require('supertest')
+import {finalConfig} from '../config'
 
 describe("Server", function() {
 	it("isn't null", function() {
@@ -21,12 +22,20 @@ describe("Database", function() {
 	});
 
 	it("is connected to correct url", function() {
-		if(config.get('database').get('dialect') === 'mongo'){
-			expect(server.db.client.s.url).toEqual(process.env.MONGODB_URL+config.get('database').get('url'))
+		if(finalConfig.database.dialect === 'mongo'){
+			expect(server.db.client.s.url).toEqual(process.env.MONGODB_URL+finalConfig.database.url)
 		}
-		else if(config.get('database').get('dialect') === 'mock'){
-			expect(server.db.url).toEqual(config.get('database').get('url'))
+		else if(finalConfig.database.dialect === 'mock'){
+			expect(server.db.url).toEqual(finalConfig.database.url)
 		}
 		
+	});
+})
+
+describe("index", ()=> {
+	it("GET /", async()=> {
+        const response = await request(server).get('/')
+        expect(response.status).toEqual(200)
+        expect(response.body).toBeDefined()
 	});
 })
