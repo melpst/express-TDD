@@ -17,11 +17,20 @@
         "port": 4000,
         "logger": ""
     },
-    "test":{
-        "name": "Server Test",
+    "unit":{
+        "name": "Server Unit Test",
         "database": {
             "url": "mock url",
             "dialect": "mock"
+        },
+        "port": 3100,
+        "logger": "test"
+    },
+    "integration":{
+        "name": "Server Integration Test",
+        "database": {
+            "url": "test?retryWrites=true&w=majority&authSource=admin",
+            "dialect": "mongo"
         },
         "port": 3100,
         "logger": "test"
