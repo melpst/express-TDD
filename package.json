@@ -4,12 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "rimraf dist&&babel src -d dist --source-maps --copy-files",
-    "serve": "NODE_ENV=production&& node --require @babel/register --require @babel/polyfill dist/app.js",
-    "dev": "NODE_ENV=development&& nodemon src/app.js --exec babel-node ",
-    "test:mocha": "NODE_ENV=test&& mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/mocha --exec babel-node",
-    "test:unit": "NODE_ENV=unit&& babel-node spec/unit.js",
-    "test:integration": "NODE_ENV=integration&& babel-node spec/integration.js"
+    "build": "rimraf dist babel src -d dist --source-maps --copy-files",
+    "serve": "NODE_ENV=production node --require @babel/register --require @babel/polyfill dist/app.js",
+    "dev": "NODE_ENV=development nodemon src/app.js --exec babel-node ",
+    "test:mocha": "NODE_ENV=test mocha --require @babel/register --require @babel/polyfill --reporter spec --exit tests/mocha --exec babel-node",
+    "test:unit": "NODE_ENV=unit babel-node spec/unit.js",
+    "test:integration": "NODE_ENV=integration babel-node spec/integration.js"
   },
   "author": "",
   "license": "ISC",
