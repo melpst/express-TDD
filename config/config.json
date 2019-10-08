@@ -14,7 +14,7 @@
             "url": "test?retryWrites=true&w=majority&authSource=admin",
             "dialect": "mongo"
         },
-        "port": 4000,
+        "port": 5000,
         "logger": ""
     },
     "unit":{
