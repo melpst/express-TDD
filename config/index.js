@@ -10,6 +10,4 @@ const finalConfig = {
     ELASTIC_URL: process.env.ELASTIC_URL
 }
 
-console.log(finalConfig)
-
 export {finalConfig}

@@ -25,6 +25,7 @@ coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+dist/
 
 # Dependency directories
 node_modules
@@ -42,5 +43,4 @@ yarn.lock
 
 #others
 config/azure.json
-./dist/*
 .vscode/
