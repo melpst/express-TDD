@@ -1,4 +1,6 @@
 global.__basedir = path.resolve(__dirname, '../')
+console.log(__dirname)
+console.log(__basedir)
 
 import { logger } from 'src/logger'
 import express from 'express'
