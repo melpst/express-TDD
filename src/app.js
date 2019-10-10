@@ -1,6 +1,3 @@
-global.__basedir = path.resolve(__dirname)
-console.log(__basedir)
-
 import { logger } from './logger'
 import express from 'express'
 import bodyParser from 'body-parser'
