@@ -3,7 +3,7 @@ const { Client } = require('@elastic/elasticsearch')
 import {finalConfig} from '../../config'
 
 const client = new Client({
-    host: finalConfig.ELASTIC_URL
+    node: finalConfig.ELASTIC_URL
 })
 
 const userMapping = {
