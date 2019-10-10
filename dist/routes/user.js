@@ -43,24 +43,13 @@ router.get('/test', function (req, res) {
   res.render('index');
 });
 router.get('/:id', function (req, res) {
-  // findAll({'_id': req.params.id}, {'_id': 'desc'}, 1, userColl, res)
   _logger.logger.info("GET /user/".concat(req.params.id));
 
-  dal.findAll({
+  findAll({
     '_id': req.params.id
   }, {
     '_id': 'desc'
-  }, 1, userColl).then(function (docs) {
-    _logger.logger.debug(docs);
-
-    res.render('all', {
-      users: docs
-    });
-  })["catch"](function (err) {
-    _logger.logger.error(err);
-
-    res.status(500).send(err.message);
-  });
+  }, 1, userColl, res);
 });
 router.put('/:id', function (req, res) {
   _logger.logger.info("PUT /user/".concat(req.params.id));

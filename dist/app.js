@@ -16,6 +16,8 @@ var _config = require("../config");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+global.__basedir = _path["default"].resolve(__dirname);
+console.log(__basedir);
 var app = (0, _express["default"])();
 app.set('views', _path["default"].join(__dirname, 'views'));
 app.set('view engine', 'ejs');
