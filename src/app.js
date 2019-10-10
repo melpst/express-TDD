@@ -1,14 +1,13 @@
-global.__basedir = path.resolve(__dirname, '../')
-console.log(__dirname)
+global.__basedir = path.resolve(__dirname)
 console.log(__basedir)
 
-import { logger } from 'src/logger'
+import { logger } from './logger'
 import express from 'express'
 import bodyParser from 'body-parser'
-import router from 'src/routes'
+import router from './routes'
 import path from 'path'
-import database from 'src/database'
-import {finalConfig} from 'config'
+import database from './database'
+import {finalConfig} from '../config'
 
 const app = express()
 
